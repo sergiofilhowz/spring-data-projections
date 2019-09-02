@@ -34,4 +34,10 @@ public class ReflectionUtilsTest {
         assertThat(setterNickname.getName()).isEqualTo("setNickname");
     }
 
+    @Test
+    public void instantiateTest() {
+        final ReflectionUtils reflectionUtils = new ReflectionUtils();
+        assertThat(reflectionUtils).isInstanceOf(ReflectionUtils.class);
+    }
+
 }
