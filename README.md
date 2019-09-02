@@ -4,6 +4,17 @@
 # spring-data-projections
 Library to ease creation of high performance Entity projections
 
+## Installing
+Add this dependency to your project
+
+```xml
+<dependency>
+    <groupId>org.filho.sergio</groupId>
+    <artifactId>spring-data-projections</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
 ## Why do I need this library?
 If you try to use native Spring Data Projections, you will be stuck in a bug where projections doesn't work properly with Specifications. So you can only list your custom projections with Spring Data Specifications.
 
