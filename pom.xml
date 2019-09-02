@@ -24,7 +24,7 @@
     </contributors>
 
     <properties>
-        <spring-data-version>2.0.9.RELEASE</spring-data-version>
+        <spring-data-version>2.1.8.RELEASE</spring-data-version>
         <hibernate-jpa-version>1.0.2.Final</hibernate-jpa-version>
     </properties>
 
