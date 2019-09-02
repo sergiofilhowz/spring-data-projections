@@ -1,5 +1,7 @@
 package org.filho.sergio.projections.setters;
 
+import sun.jvm.hotspot.debugger.Page;
+
 import java.lang.reflect.Field;
 
 public class FieldPropertySetter implements PropertySetter {
@@ -12,7 +14,16 @@ public class FieldPropertySetter implements PropertySetter {
 
     @Override
     public void set(Object object, final Object value) throws ReflectiveOperationException {
-        field.setAccessible(true);
-        field.set(object, value);
+        try {
+            field.setAccessible(true);
+            field.set(object, value);
+        } catch (IllegalArgumentException e) {
+            final String valueClass = value.getClass().getSimpleName();
+            final String methodName = String.format("%s.%s", field.getDeclaringClass().getSimpleName(), field.getName());
+            final String parameterType = field.getType().getSimpleName();
+            final String message = String.format("Field with name %s has type %s and got %s", methodName, parameterType, valueClass);
+            throw new IllegalArgumentException(message, e);
+        }
+
     }
 }

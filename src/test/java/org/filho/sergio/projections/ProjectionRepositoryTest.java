@@ -8,7 +8,9 @@ import org.filho.sergio.projections.entities.Course;
 import org.filho.sergio.projections.pojo.AbstractAuthorDTO;
 import org.filho.sergio.projections.pojo.DetailCourseDTO;
 import org.filho.sergio.projections.pojo.EntityAssocCourseDTO;
+import org.filho.sergio.projections.pojo.InvalidFieldTypeCourseDTO;
 import org.filho.sergio.projections.pojo.InvalidPropertyNameAuthorDTO;
+import org.filho.sergio.projections.pojo.InvalidTypeCourseDTO;
 import org.filho.sergio.projections.pojo.NoSetterAuthorDTO;
 import org.filho.sergio.projections.pojo.SimpleAuthorDTO;
 import org.filho.sergio.projections.pojo.SimpleCourseDTO;
@@ -22,6 +24,7 @@ import org.filho.sergio.projections.query.QueryStrategy;
 import org.filho.sergio.projections.repositories.AuthorRepository;
 import org.filho.sergio.projections.repositories.CourseRepository;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -116,6 +119,28 @@ public class ProjectionRepositoryTest {
         assertThat(list.get(1).getName()).isEqualTo(secondCourse.getName());
         assertThat(list.get(1).getAuthorName()).isEqualTo(secondAuthor.getName());
         assertThat(list.get(1).getViews()).isEqualTo(secondCourse.getViews());
+    }
+
+    @Test
+    public void shouldHelpDevsWithInvalidPropertyType() {
+        final Author author = authorRepository.save(Fixture.from(Author.class).gimme("valid"));
+        final Author secondAuthor = authorRepository.save(Fixture.from(Author.class).gimme("valid"));
+        courseRepository.save(Fixture.from(Course.class).gimme("valid", author(author)));
+        courseRepository.save(Fixture.from(Course.class).gimme("valid", author(secondAuthor)));
+
+        try {
+            projectionRepository.queryProjection(Course.class, InvalidTypeCourseDTO.class);
+            Assert.fail("Should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage()).isEqualTo("Method with name InvalidTypeCourseDTO.setAuthorName has parameter type Long and got String");
+        }
+
+        try {
+            projectionRepository.queryProjection(Course.class, InvalidFieldTypeCourseDTO.class);
+            Assert.fail("Should throw an exception");
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage()).isEqualTo("Field with name InvalidFieldTypeCourseDTO.authorName has type Long and got String");
+        }
     }
 
     @Test
