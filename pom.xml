@@ -6,7 +6,7 @@
 
     <groupId>org.filho.sergio</groupId>
     <artifactId>spring-data-projections</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
 
     <name>Spring Data Projections</name>
     <description>Module to handle projections on Spring Data</description>
@@ -15,6 +15,14 @@
         <name>Sergio Marcelino</name>
         <url>https://sergio.filho.org</url>
     </organization>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <contributors>
         <contributor>
@@ -89,6 +97,15 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <forkCount>1</forkCount>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>

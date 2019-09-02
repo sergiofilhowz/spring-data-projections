@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/sergiofilhowz/spring-data-projections.svg?branch=master)](https://travis-ci.org/sergiofilhowz/spring-data-projections)
+[![Coverage Status](https://coveralls.io/repos/github/sergiofilhowz/spring-data-projections/badge.svg)](https://coveralls.io/github/sergiofilhowz/spring-data-projections)
+
 # spring-data-projections
 Library to ease creation of high performance Entity projections
 
