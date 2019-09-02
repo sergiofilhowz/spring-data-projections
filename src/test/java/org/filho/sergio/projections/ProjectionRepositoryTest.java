@@ -43,7 +43,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JpaConfig.class}, loader = AnnotationConfigContextLoader.class)
+@ContextConfiguration(classes = JpaConfig.class, loader = AnnotationConfigContextLoader.class)
 public class ProjectionRepositoryTest {
 
     @Autowired private AuthorRepository authorRepository;

@@ -7,24 +7,35 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
+/**
+ *
+ *
+ * @author Sergio Marcelino (sergio@filho.org)
+ */
 public interface ProjectionRepository {
 
-    <DTO extends Projection> List<DTO> query(Class<?> rootClass, QueryStrategy<DTO> queryStrategy);
+    <DTO extends Projection> List<DTO> query(
+            Class<?> rootClass, QueryStrategy<DTO> queryStrategy);
 
-    <T, DTO extends Projection> List<DTO> query(Class<T> rootClass,
-                                                Specification<T> specification, QueryStrategy<DTO> queryStrategy);
+    <T, DTO extends Projection> List<DTO> query(
+            Class<T> rootClass, Specification<T> specification,
+            QueryStrategy<DTO> queryStrategy);
 
-    <T, DTO extends Projection> List<DTO> query(Class<T> rootClass, Specification<T> specification,
-                                                Pageable pageable, QueryStrategy<DTO> queryStrategy);
+    <T, DTO extends Projection> List<DTO> query(
+            Class<T> rootClass, Specification<T> specification,
+            Pageable pageable, QueryStrategy<DTO> queryStrategy);
 
-    <DTO extends Projection> List<DTO> queryProjection(Class<?> rootClass, Class<DTO> projectionClass);
+    <DTO extends Projection> List<DTO> queryProjection(
+            Class<?> rootClass, Class<DTO> projectionClass);
 
-    <T, DTO extends Projection> List<DTO> queryProjection(Class<T> rootClass, Class<DTO> projectionClass,
-                                                          Specification<T> specification);
+    <T, DTO extends Projection> List<DTO> queryProjection(
+            Class<T> rootClass, Class<DTO> projectionClass, Specification<T> specification);
 
-    <DTO extends Projection> Page<DTO> queryProjection(Class<?> rootClass, Class<DTO> projectionClass, Pageable pageable);
+    <DTO extends Projection> Page<DTO> queryProjection(
+            Class<?> rootClass, Class<DTO> projectionClass, Pageable pageable);
 
-    <T, DTO extends Projection> Page<DTO> queryProjection(Class<T> rootClass, Class<DTO> projectionClass,
-                                                          Specification<T> specification, Pageable pageable);
+    <T, DTO extends Projection> Page<DTO> queryProjection(
+            Class<T> rootClass, Class<DTO> projectionClass,
+            Pageable pageable, Specification<T> specification);
 
 }

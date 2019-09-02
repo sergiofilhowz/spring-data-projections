@@ -6,6 +6,12 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
+/**
+ * A projector is a pair representation of a Entity/DTO
+ * @param <T>   Is the entity class
+ * @param <DTO> Is the DTO class
+ * @author Sergio Marcelino (sergio@filho.org)
+ */
 public class Projector<T, DTO extends Projection> {
 
     private final ProjectionRepository projectionRepository;
@@ -20,18 +26,34 @@ public class Projector<T, DTO extends Projection> {
         this.projectionClass = projectionClass;
     }
 
+    /**
+     * @param pageable          Spring Data Pageable
+     * @param specification     Spring Data Specification
+     * @return returns a filtered paged list with the DTO
+     */
     public Page<DTO> list(final Pageable pageable, final Specification<T> specification) {
-        return projectionRepository.queryProjection(entityClass, projectionClass, specification, pageable);
+        return projectionRepository.queryProjection(entityClass, projectionClass, pageable, specification);
     }
 
+    /**
+     * @param specification Spring Data Specification
+     * @return returns a filtered list with the DTO
+     */
     public List<DTO> list(final Specification<T> specification) {
         return projectionRepository.queryProjection(entityClass, projectionClass, specification);
     }
 
+    /**
+     * @return returns the complete list with the DTO
+     */
     public List<DTO> list() {
         return projectionRepository.queryProjection(entityClass, projectionClass);
     }
 
+    /**
+     * @param pageable Spring Data pageable
+     * @return returns the paged list with the DTO
+     */
     public Page<DTO> list(final Pageable pageable) {
         return projectionRepository.queryProjection(entityClass, projectionClass, pageable);
     }

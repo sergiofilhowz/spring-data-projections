@@ -111,12 +111,13 @@ public class ProjectionRepositoryImpl implements ProjectionRepository {
 
     @Override
     public <DTO extends Projection> Page<DTO> queryProjection(final Class<?> rootClass, final Class<DTO> projectionClass, final Pageable pageable) {
-        return queryProjection(rootClass, projectionClass, null, pageable);
+        return queryProjection(rootClass, projectionClass, pageable, null);
     }
 
     @Override
-    public <T, DTO extends Projection> Page<DTO> queryProjection(final Class<T> rootClass,
-                                                                 final Class<DTO> projectionClass, final Specification<T> specification, final Pageable pageable) {
+    public <T, DTO extends Projection> Page<DTO> queryProjection(
+            final Class<T> rootClass, final Class<DTO> projectionClass,
+            final Pageable pageable, final Specification<T> specification) {
         final QueryStrategy<DTO> strategy = resolveQueryStrategy(projectionClass);
         return pagedQuery(rootClass, specification, pageable, strategy);
     }
