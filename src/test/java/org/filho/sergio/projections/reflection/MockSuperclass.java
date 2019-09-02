@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class MockSuperclass {
 
+    public static String ignored;
+
     private String nickname;
 
 }

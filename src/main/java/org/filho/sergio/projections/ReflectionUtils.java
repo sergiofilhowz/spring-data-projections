@@ -2,9 +2,11 @@ package org.filho.sergio.projections;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.google.common.base.CaseFormat.LOWER_CAMEL;
 import static com.google.common.base.CaseFormat.UPPER_CAMEL;
@@ -17,7 +19,9 @@ public final class ReflectionUtils {
             clazz = clazz.getSuperclass();
             fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
         }
-        return fields;
+        return fields.stream()
+                .filter(field -> !Modifier.isStatic(field.getModifiers()))
+                .collect(Collectors.toList());
     }
 
     public static Method getSetterForProperty(Field field) {
