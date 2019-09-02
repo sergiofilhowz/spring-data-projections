@@ -1,7 +1,5 @@
 package org.filho.sergio.projections.setters;
 
-import sun.jvm.hotspot.debugger.Page;
-
 import java.lang.reflect.Field;
 
 public class FieldPropertySetter implements PropertySetter {
@@ -24,6 +22,5 @@ public class FieldPropertySetter implements PropertySetter {
             final String message = String.format("Field with name %s has type %s and got %s", methodName, parameterType, valueClass);
             throw new IllegalArgumentException(message, e);
         }
-
     }
 }
