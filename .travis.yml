@@ -9,7 +9,7 @@ cache:
     - $HOME/.m2/repository
 
 jdk:
-  - openjdk8
+  - maven:3.5.4-jdk-8-alpine
 
 #env:
 #  global:
