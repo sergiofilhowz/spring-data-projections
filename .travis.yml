@@ -1,0 +1,29 @@
+language: java
+
+#services:
+#  - mysql
+#  - postgresql
+
+cache:
+  directories:
+    - $HOME/.m2/repository
+
+jdk:
+  - openjdk8
+
+#env:
+#  global:
+#    - DB_HOST=127.0.0.1
+#    - DB_PORT=3306
+#    - DB_NAME=test
+#    - DB_USER=root
+#    - DB_PASS=
+
+#before_install:
+#  - mysql -e 'CREATE DATABASE test;'
+
+script:
+  - mvn clean test -B
+
+after_success:
+  - mvn clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
