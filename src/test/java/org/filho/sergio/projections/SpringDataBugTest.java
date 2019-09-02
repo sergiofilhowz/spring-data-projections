@@ -66,11 +66,6 @@ public class SpringDataBugTest {
         final Pageable pageable = PageRequest.of(0, 10);
         final Specification<Course> spec = (Specification<Course>)
                 (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("name"), course.getName());
-        final Page<Course> list = courseRepository.findAllByActiveTrue(spec, pageable);
-        assertThat(list.getContent()).hasSize(1);
-        assertThat(list.getContent().get(0).getName()).isEqualTo(course.getName());
-        assertThat(list.getContent().get(0).getAuthor().getName()).isEqualTo(author.getName());
-
         courseRepository.findAllByActiveTrue(spec, pageable);
     }
 
