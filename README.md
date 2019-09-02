@@ -2,7 +2,7 @@
 Library to ease creation of high performance Entity projections
 
 ## Why do I need this library?
-If you try to use Spring Data Projections, you will be stuck in a bug where projections doesn't work properly with Specifications. So you can only list your custom projections with Spring Data Specifications.
+If you try to use native Spring Data Projections, you will be stuck in a bug where projections doesn't work properly with Specifications. So you can only list your custom projections with Spring Data Specifications.
 
 ## What are the advantages of using this library?
 This library is lightweight and creates dinamically a SQL Query with only the attributes selected.
