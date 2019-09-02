@@ -9,7 +9,7 @@ cache:
     - $HOME/.m2/repository
 
 jdk:
-  - maven:3.5.4-jdk-8-alpine
+  - openjdk8
 
 #env:
 #  global:
@@ -26,4 +26,4 @@ script:
   - mvn clean test -B
 
 after_success:
-  - mvn clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
+  - ./mvnw clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
