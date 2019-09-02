@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 import static com.google.common.base.CaseFormat.LOWER_CAMEL;
 import static com.google.common.base.CaseFormat.UPPER_CAMEL;
 
-public final class ReflectionUtils {
+public class ReflectionUtils {
 
     public static List<Field> getFields(Class<?> clazz) {
         final List<Field> fields = new LinkedList<>(Arrays.asList(clazz.getDeclaredFields()));
