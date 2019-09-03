@@ -27,3 +27,13 @@ script:
 
 after_success:
   - mvn clean test jacoco:report coveralls:report -DrepoToken=$COVERALLS_TOKEN
+
+#deploy:
+#  provider: mvn
+#  email: sergio@filho.org
+#  on:
+#    tags: true
+
+notifications:
+  email:
+    - sergio@filho.org
